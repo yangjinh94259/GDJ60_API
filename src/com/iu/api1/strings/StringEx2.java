@@ -1,4 +1,4 @@
-package com.iu.ap1.strings;
+package com.iu.api1.strings;
 
 import java.util.Scanner;
 

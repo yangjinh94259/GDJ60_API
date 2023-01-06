@@ -1,4 +1,4 @@
-package com.iu.ap1.objects;
+package com.iu.api1.objects;
 
 public class Child extends Parent{
 
