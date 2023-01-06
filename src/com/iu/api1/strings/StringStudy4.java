@@ -12,7 +12,8 @@ public class StringStudy4 {
 		System.out.println(result);
 		
 		str = "test@naver.com";
-		result = str.substring(5);
+		//int idx = str.indexOf("@");
+		result = str.substring(str.indexOf("@")+1);
 		System.out.println(result);
 	}
 
