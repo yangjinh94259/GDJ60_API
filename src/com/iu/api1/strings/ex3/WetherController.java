@@ -2,7 +2,7 @@ package com.iu.api1.strings.ex3;
 
 import java.util.Scanner;
 
-public class WeatherController {
+public class WetherController {
 	
 	//start
 	//1. 날씨정보초기화
@@ -16,16 +16,16 @@ public class WeatherController {
 	//
 	//6. 종      료
 	private Scanner sc;
-	private WeatherData weatherData;
-	private WeatherView weatherView;
-	private WeatherInput weatherInput;
-	private WeatherDTO [] weatherDTOs;
+	private WetherData weatherData;
+	private WetherView weatherView;
+	private WetherInput weatherInput;
+	private WetherDTO [] weatherDTOs;
 	
-	public WeatherController() {
+	public WetherController() {
 		this.sc = new Scanner(System.in);
-		this.weatherData= new WeatherData();
-		weatherView=new WeatherView();
-		weatherInput = new WeatherInput();
+		this.weatherData= new WetherData();
+		weatherView=new WetherView();
+		weatherInput = new WetherInput();
 	}
 	
 	public void start() {
@@ -54,7 +54,7 @@ public class WeatherController {
 				weatherView.view(weatherDTOs);
 				break;
 			case 3:
-				WeatherDTO weatherDTO = weatherInput.search(weatherDTOs);
+				WetherDTO weatherDTO = weatherInput.search(weatherDTOs);
 				if(weatherDTO != null) {
 					weatherView.view(weatherDTO);
 				}else {

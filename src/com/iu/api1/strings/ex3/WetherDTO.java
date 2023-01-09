@@ -1,6 +1,6 @@
 package com.iu.api1.strings.ex3;
 
-public class WeatherDTO {
+public class WetherDTO {
 
 	private String city;
 	private int gion;
