@@ -25,18 +25,20 @@ public class JuminCheck2 {
 			if(i == 6) {
 				continue;
 			}
-			sum = sum + Integer.parseInt(jumin.substring(i, i+1)) * num;
+//			sum = sum + Integer.parseInt(jumin.substring(i, i+1)) * num;
+			sum = sum + Integer.parseInt(String.valueOf(jumin.charAt(i)))* num;
 			num++;
 			if(num == 10) {
 				num = 2;
 			}	
 		}
-		int result = sum % 11;
+		int result = 11 - sum % 11;
 //		result = 11 - result;
 		
 		if(result >= 9) {
 			result = result % 10;
 		}
+		
 		int flag = Integer.parseInt(jumin.substring(13));
 		
 		if(result == flag) {
