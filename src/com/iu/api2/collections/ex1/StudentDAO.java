@@ -6,6 +6,7 @@ public class StudentDAO {
 	Scanner sc = new Scanner(System.in);
 	private StringBuffer sb;
 	boolean check = true;
+	StudentView sv = new StudentView(null);
 	
 	public StudentDAO() {
 		this.sb = new StringBuffer();
@@ -14,8 +15,6 @@ public class StudentDAO {
 		sb.append("winter-2-86-84-75-");
 		sb.append("suji, 3, 89, 74, 87 ");
 		sb.append("choa, 4, 71, 25, 99 ");
-		
-		System.out.println(sb);
 		
 	}
 
@@ -31,10 +30,10 @@ public class StudentDAO {
 		 
 		 switch(select) {
 		 case 1:
-			 System.out.println("학생 정보 초기화");
+			 System.out.println("초기화 완료");
 			 break;
 		 case 2:
-			 System.out.println("학생 정보 전체 조회");
+//			 sv.view(studentDAO);
 			 break;
 		 case 3:
 			 System.out.println("학생 정보 검색 조회(이름)");
