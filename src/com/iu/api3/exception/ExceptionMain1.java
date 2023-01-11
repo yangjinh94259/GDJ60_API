@@ -11,9 +11,29 @@ public class ExceptionMain1 {
 		if(n == 0) {
 			num = "test";
 		}
-		System.out.println(3 / n);
-		
-		System.out.println(num.charAt(0));
+		try {
+			int a = 10;
+			System.out.println(3 / n);
+//			throw new ArithmeticException();	//무조건 발생
+			System.out.println(num.charAt(0));
+//			throw new NullPointerException();
+		}
+		//다형성
+		catch(ArithmeticException e){
+			e.printStackTrace();
+			System.out.println("예외 발생");
+			int a =100;
+		}
+		catch(RuntimeException e) {
+			e.printStackTrace();
+		}
+		catch(Exception e) {
+			
+		}
+		catch(Throwable e) {
+			
+		}
+		//System.out.println(a);
 		
 		System.out.println("종료합니다");
 	}
