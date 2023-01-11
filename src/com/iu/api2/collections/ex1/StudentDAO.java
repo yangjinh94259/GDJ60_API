@@ -1,5 +1,8 @@
 package com.iu.api2.collections.ex1;
 
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
 import java.util.StringTokenizer;
@@ -17,6 +20,22 @@ public class StudentDAO {
 		sb.append("winter-2-86-84-75-");
 		sb.append("suji, 3, 89, 74, 87 ");
 		sb.append("choa, 4, 71, 25, 99 ");
+	}
+	
+	//학생정보백업
+	//현재시간을 파일명으로 해서 파일 작성
+	public void backupStudent(ArrayList<StudentDTO> ar) {
+		File file = new File("C:\\fileTest", "Student.txt");
+		
+		try {
+			FileWriter fw = new FileWriter(file, true);
+			fw.write(ar+"\r\n");
+			fw.flush();//강제버퍼를 비우기
+			
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 	
 	//학생정보삭제
