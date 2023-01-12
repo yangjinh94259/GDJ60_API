@@ -14,7 +14,6 @@ public class Client2 {
 		
 		Scanner sc = new Scanner(System.in);
 		
-		
 	}
 
 }
