@@ -150,14 +150,26 @@ public class StudentDAO {
 	//학생정보초기화
 	public ArrayList<StudentDTO>  init() {
 		//String data = this.sb.toString();
-		ArrayList<StudentDTO> ar = new ArrayList<>();
-	
+		File file = new File("C:\\filetest");
+		
+		String [] names = file.list();
+		long max = 0;
+		for(String name : names) {	//234.txt
+			name = name.substring(0, name.lastIndexOf("."));
+			long date = Long.parseLong(name);
+			
+			if(date > max) {
+				max = date;
+			}
+		}
+		
 		//1. 파일 정보 File
-		File file = new File("C:\\filetest", "student.txt");
+		file = new File(file, max + ".txt");
 		
 		//2. 파일내용 읽기위해서 연결 준비
 		FileReader fr = null;
 		BufferedReader br = null;
+		ArrayList<StudentDTO> ar = new ArrayList<>();
 		
 		try {
 			fr = new FileReader(file);
@@ -168,32 +180,31 @@ public class StudentDAO {
 				data=data.replace(" ", "-");
 				data=data.replace(",", "");
 				StringTokenizer st = new StringTokenizer(data, "-");
-				while(st.hasMoreTokens()) {
-					StudentDTO studentDTO = new StudentDTO();
-					studentDTO.setName(st.nextToken());
-					studentDTO.setNum(Integer.parseInt(st.nextToken()));
-					studentDTO.setKor(Integer.parseInt(st.nextToken()));
-					studentDTO.setEng(Integer.parseInt(st.nextToken()));
-					studentDTO.setMath(Integer.parseInt(st.nextToken()));
 			
-					studentDTO.setTotal(studentDTO.getKor()+studentDTO.getEng()+studentDTO.getMath() );
-					studentDTO.setAvg(studentDTO.getTotal()/3.0);
+				StudentDTO studentDTO = new StudentDTO();
+				studentDTO.setName(st.nextToken());
+				studentDTO.setNum(Integer.parseInt(st.nextToken()));
+				studentDTO.setKor(Integer.parseInt(st.nextToken()));
+				studentDTO.setEng(Integer.parseInt(st.nextToken()));
+				studentDTO.setMath(Integer.parseInt(st.nextToken()));
 			
-					ar.add(studentDTO);
-				}
+				studentDTO.setTotal(studentDTO.getKor()+studentDTO.getEng()+studentDTO.getMath() );
+				studentDTO.setAvg(studentDTO.getTotal()/3.0);
+			
+				ar.add(studentDTO);
 			}
 		}
 		catch(Exception e){
 			e.printStackTrace();
 		}
 		finally {
-			try {
-				br.close();
-				fr.close();
-			}
-			catch(Exception e) {
+				try {
+					br.close();
+					fr.close();
+				}
+				catch(Exception e) {
 				
-			}
+				}
 		}
 		return ar;
 	}
