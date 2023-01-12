@@ -57,9 +57,10 @@ public class StudentController {
 				}
 				break;
 			case 6:
-				
+				studentDAO.StudentBackUp(ar);
 				break;
 			default:
+				System.out.println("프로그램 종료");
 				check=false;
 				break;
 			}

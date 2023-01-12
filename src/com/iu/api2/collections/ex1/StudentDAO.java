@@ -1,9 +1,13 @@
 package com.iu.api2.collections.ex1;
 
+import java.io.BufferedReader;
 import java.io.File;
+import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.GregorianCalendar;
 import java.util.Scanner;
 import java.util.StringTokenizer;
 
@@ -22,21 +26,53 @@ public class StudentDAO {
 		sb.append("choa, 4, 71, 25, 99 ");
 	}
 	
+	
+	
 	//학생정보백업
 	//현재시간을 파일명으로 해서 파일 작성
-	public void backupStudent(ArrayList<StudentDTO> ar) {
-		File file = new File("C:\\fileTest", "Student.txt");
+	public void StudentBackUp(ArrayList<StudentDTO> ar) {
+		//Calendar ca = new GregorianCalendar();
+		Calendar ca = Calendar.getInstance();
+		long time = ca.getTimeInMillis();
+		
+		File file = new File("C:\\fileTest", time + ".txt");
+		
+		FileWriter fw = null;
 		
 		try {
-			FileWriter fw = new FileWriter(file, true);
-			fw.write(ar+"\r\n");
-			fw.flush();//강제버퍼를 비우기
+			fw = new FileWriter(file);
 			
+			for(StudentDTO studentDTO : ar) {
+				StringBuffer sb = new StringBuffer();
+				sb.append(studentDTO.getName());
+				sb.append("-");
+				sb.append(studentDTO.getNum());
+				sb.append("-");
+				sb.append(studentDTO.getKor());
+				sb.append("-");
+				sb.append(studentDTO.getEng());
+				sb.append("-");
+				sb.append(studentDTO.getMath());
+				sb.append("\r\n");
+				
+				fw.write(sb.toString());
+				fw.flush();
+			}
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		finally {
+			try {
+				fw.close();
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
 	}
+	
+	
 	
 	//학생정보삭제
 	public int removeStudent(ArrayList<StudentDTO> ar) {
@@ -68,6 +104,8 @@ public class StudentDAO {
 		
 	}
 	
+	
+	
 	//학생정보추가
 	public void addStudent(ArrayList<StudentDTO> ar) {
 		StudentDTO studentDTO = new StudentDTO();
@@ -88,6 +126,8 @@ public class StudentDAO {
 		
 	}
 	
+	
+	
 	//학생정보검색
 	public StudentDTO findByName(ArrayList<StudentDTO> ar) {
 		System.out.println("검색할 이름 입력");
@@ -106,27 +146,55 @@ public class StudentDAO {
 	}
 	
 	
+	
 	//학생정보초기화
 	public ArrayList<StudentDTO>  init() {
-		String data = this.sb.toString();
-		data=data.replace(" ", "-");
-		data=data.replace(",", "");
-		
-		System.out.println(data);
-		StringTokenizer st = new StringTokenizer(data, "-");
+		//String data = this.sb.toString();
 		ArrayList<StudentDTO> ar = new ArrayList<>();
-		while(st.hasMoreTokens()) {
-			StudentDTO studentDTO = new StudentDTO();
-			studentDTO.setName(st.nextToken());
-			studentDTO.setNum(Integer.parseInt(st.nextToken()));
-			studentDTO.setKor(Integer.parseInt(st.nextToken()));
-			studentDTO.setEng(Integer.parseInt(st.nextToken()));
-			studentDTO.setMath(Integer.parseInt(st.nextToken()));
-			studentDTO.setTotal(studentDTO.getKor()+studentDTO.getEng()+studentDTO.getMath() );
-			studentDTO.setAvg(studentDTO.getTotal()/3.0);
-			ar.add(studentDTO);
-		}
+	
+		//1. 파일 정보 File
+		File file = new File("C:\\filetest", "student.txt");
 		
+		//2. 파일내용 읽기위해서 연결 준비
+		FileReader fr = null;
+		BufferedReader br = null;
+		
+		try {
+			fr = new FileReader(file);
+			br = new BufferedReader(fr);
+			String data = null;
+			
+			while((data = br.readLine()) != null) {
+				data=data.replace(" ", "-");
+				data=data.replace(",", "");
+				StringTokenizer st = new StringTokenizer(data, "-");
+				while(st.hasMoreTokens()) {
+					StudentDTO studentDTO = new StudentDTO();
+					studentDTO.setName(st.nextToken());
+					studentDTO.setNum(Integer.parseInt(st.nextToken()));
+					studentDTO.setKor(Integer.parseInt(st.nextToken()));
+					studentDTO.setEng(Integer.parseInt(st.nextToken()));
+					studentDTO.setMath(Integer.parseInt(st.nextToken()));
+			
+					studentDTO.setTotal(studentDTO.getKor()+studentDTO.getEng()+studentDTO.getMath() );
+					studentDTO.setAvg(studentDTO.getTotal()/3.0);
+			
+					ar.add(studentDTO);
+				}
+			}
+		}
+		catch(Exception e){
+			e.printStackTrace();
+		}
+		finally {
+			try {
+				br.close();
+				fr.close();
+			}
+			catch(Exception e) {
+				
+			}
+		}
 		return ar;
 	}
 
