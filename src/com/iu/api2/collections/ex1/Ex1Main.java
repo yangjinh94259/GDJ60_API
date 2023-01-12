@@ -16,8 +16,6 @@ public class Ex1Main {
 
 		new StudentController().start();
 		
-		
-		
 		//향상된 for
 //		for(StudentDTO studentDTO:ar) {
 //			
