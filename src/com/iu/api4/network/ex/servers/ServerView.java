@@ -1,4 +1,4 @@
-package com.iu.api4.network.ex.server;
+package com.iu.api4.network.ex.servers;
 
 import java.util.ArrayList;
 
@@ -8,15 +8,15 @@ public class ServerView {
 		System.out.println(msg);
 	}
 	
-	public void view(ArrayList<ServerDTO> ar) {
+	public void view(ArrayList<StudentDTO> ar) {
 		
-		for(ServerDTO serverDTO:ar) {
+		for(StudentDTO serverDTO:ar) {
 			this.view(serverDTO);
 		}
 		
 	}
 	
-	public void view(ServerDTO serverDTO) {
+	public void view(StudentDTO serverDTO) {
 		
 		System.out.println("Name : "+serverDTO.getName());
 		System.out.println("Num  : "+serverDTO.getNum());

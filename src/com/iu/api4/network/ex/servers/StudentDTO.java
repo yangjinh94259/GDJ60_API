@@ -1,13 +1,13 @@
-package com.iu.api4.network.ex.server;
+package com.iu.api4.network.ex.servers;
 
-public class ServerDTO {
-
-	String name;
-	int num;
-	int kor;
-	int eng;
-	int math;
-	
+public class StudentDTO {
+	private String name;
+	private int num;
+	private int kor;
+	private int eng;
+	private int math;
+	private int total;
+	private double avg;
 	
 	public String getName() {
 		return name;
@@ -39,5 +39,19 @@ public class ServerDTO {
 	public void setMath(int math) {
 		this.math = math;
 	}
+	public int getTotal() {
+		return total;
+	}
+	public void setTotal(int total) {
+		this.total = total;
+	}
+	public double getAvg() {
+		return avg;
+	}
+	public void setAvg(double avg) {
+		this.avg = avg;
+	}
 	
+	
+
 }
