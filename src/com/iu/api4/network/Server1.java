@@ -14,17 +14,18 @@ import java.util.Scanner;
 public class Server1 {
 
 	public static void main(String[] args) {
-		Scanner sn = new Scanner(System.in);
-		ServerSocket ss = null;
-		Socket sc = null;
+		Scanner scanner = new Scanner(System.in);
+		ServerSocket ss= null;
+		Socket sc= null;
 		
-		InputStream is = null;
-		InputStreamReader ir = null;
-		BufferedReader br = null;
+		InputStream is=null;
+		InputStreamReader ir=null;
+		BufferedReader br=null;
 		
 		OutputStream os = null;
 		OutputStreamWriter ow = null;
 		BufferedWriter bw = null;
+		
 		
 		try {
 			ss = new ServerSocket(8282);
@@ -36,50 +37,49 @@ public class Server1 {
 				is = sc.getInputStream();
 				ir = new InputStreamReader(is);
 				br = new BufferedReader(ir);
-			
+				
 				String msg = br.readLine();
-			
+				
 				if(msg.toUpperCase().equals("Q")) {
 					break;
 				}
-			
-				System.out.println("Client : " + msg);
-			
+				
+				System.out.println("Cilent : "+msg);
+				
 				System.out.println("Client로 보낼 메세지 입력");
-				msg = sn.nextLine();
-			
+				msg = scanner.nextLine();
+				
 				os = sc.getOutputStream();
 				ow = new OutputStreamWriter(os);
 				bw = new BufferedWriter(ow);
-			
-				bw.write(msg + "\r\n");
+				
+				bw.write(msg+"\r\n");
 				bw.flush();
-			
-				//if(msg.equals("q") || msg.equals("Q"))
+				
 				if(msg.toUpperCase().equals("Q")) {
 					break;
 				}
-			}	
-			} catch (Exception e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}finally {
-				try {
-					br.close();
-					ir.close();
-					is.close();
-					bw.close();
-					ow.close();
-					os.close();
-					sc.close();
-					ss.close();
-				} catch (Exception e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
 				
 			}
-		
+			
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally {
+			try {
+				br.close();
+				ir.close();
+				is.close();
+				bw.close();
+				ow.close();
+				os.close();
+				sc.close();
+				ss.close();
+			}catch (Exception e) {
+				// TODO: handle exception
+			}
+		}
+
 	}
 
 }

@@ -14,21 +14,21 @@ import java.util.Scanner;
 public class Client1 {
 
 	public static void main(String[] args) {
-		Scanner sc = new Scanner(System.in);
 		Socket socket = null;
-	
-		OutputStream os = null;
-		OutputStreamWriter ow = null;
-		BufferedWriter bw = null;
 		
-		InputStream is = null;
+		OutputStream os=null;
+		OutputStreamWriter ow=null;
+		BufferedWriter bw=null;
+		
+		InputStream is=null;
 		InputStreamReader ir = null;
 		BufferedReader br = null;
 		
+		Scanner scanner = new Scanner(System.in);
 		try {
 			//객체 생성시 서버 접속 시도
-			socket = new Socket("127.0.0.1", 8282);	//0~65535
-			System.out.println("Server 접속 성공");
+			socket = new Socket("127.0.0.1", 8282);
+			System.out.println("Sever 접속 성공");
 			
 			while(true) {
 				//0,1
@@ -39,45 +39,45 @@ public class Client1 {
 				bw = new BufferedWriter(ow);
 				
 				System.out.println("서버로 보낼 메세지 입력");
-				String msg = sc.next();
-			
-				bw.write(msg + "\r\n");
+				String msg =scanner.next();
+
+				bw.write(msg+"\r\n");
 				bw.flush();
 				
-					if(msg.toUpperCase().equals("Q")) {
-						break;
-					}
-					
-					is = socket.getInputStream();
-					ir = new InputStreamReader(is);
-					br = new BufferedReader(ir);
-			
-					msg = br.readLine();
-			
-					if(msg.toUpperCase().equals("Q")) {
-						break;
-					}
-			
-					System.out.println("Client : " + msg);
+				if(msg.toUpperCase().equals("Q")) {
+					break;
 				}
-			} catch (Exception e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}finally {
-				try {
-					br.close();
-					ir.close();
-					is.close();
-					bw.close();
-					ow.close();
-					os.close();
-					socket.close();
-				} catch (Exception e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
+				
+				
+				
+				is = socket.getInputStream();
+				ir = new InputStreamReader(is);
+				br = new BufferedReader(ir);
+				
+				msg = br.readLine();
+				
+				if(msg.toUpperCase().equals("Q")) {
+					break;
 				}
-			
+				
+				System.out.println("Sever : "+msg);
 			}
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			try {
+				br.close();
+				ir.close();
+				is.close();
+				bw.close();
+				ow.close();
+				os.close();
+				socket.close();
+			}catch (Exception e) {
+				// TODO: handle exception
+			}
+		}
 
 	}
 
