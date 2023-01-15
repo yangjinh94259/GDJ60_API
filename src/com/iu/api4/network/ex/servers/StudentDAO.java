@@ -74,7 +74,7 @@ public class StudentDAO {
 		
 		for(StudentDTO studentDTO : ar) {
 			if(name.equals(studentDTO.getName())) {
-				result = sb.toString();
+				
 				break;
 			}
 		}
