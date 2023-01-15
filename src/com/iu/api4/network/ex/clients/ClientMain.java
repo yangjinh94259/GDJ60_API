@@ -11,7 +11,7 @@ import java.net.Socket;
 public class ClientMain {
 
 	public static void main(String[] args) throws Exception {
-		Socket socket = new Socket("192.168.1.27", 8282);
+		Socket socket = new Socket("127.0.0.1", 8282);
 		System.out.println("Socket");
 		InputStream is = null;
 		InputStreamReader ir= null;
