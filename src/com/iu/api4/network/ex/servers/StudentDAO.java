@@ -5,11 +5,13 @@ import java.io.File;
 import java.io.FileReader;
 import java.util.ArrayList;
 import java.util.Iterator;
+import java.util.Scanner;
 import java.util.StringTokenizer;
 
 public class StudentDAO {
-	
 	//List의 내용들을 하나의 String으로 만들어 주는 메서드
+	Scanner sc = new Scanner(System.in);
+	
 	public String makeList(ArrayList<StudentDTO> ar) {
 		String result="";
 		StringBuffer sb = new StringBuffer();
@@ -37,7 +39,7 @@ public class StudentDAO {
 	public ArrayList<StudentDTO> init() throws Exception {
 		ArrayList<StudentDTO> ar = new ArrayList<>();
 		
-		File file = new File("C:\\fileTest", "1673482994523.txt");
+		File file = new File("C:\\fileTest", "1673484258706.txt");
 		
 		FileReader fr = new FileReader(file);
 		BufferedReader br = new BufferedReader(fr);
@@ -61,6 +63,22 @@ public class StudentDAO {
 		}//while 끝
 		
 		return ar;
+	}
+	
+	public String findByName(ArrayList<StudentDTO> ar) {
+		System.out.println("검색할 이름 입력");
+		String name = sc.next();
+		
+		String result = "";
+		StringBuffer sb = new StringBuffer();
+		
+		for(StudentDTO studentDTO : ar) {
+			if(name.equals(studentDTO.getName())) {
+				result = sb.toString();
+				break;
+			}
+		}
+		return result;
 	}
 
 }

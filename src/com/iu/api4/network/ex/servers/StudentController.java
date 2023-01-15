@@ -15,7 +15,6 @@ public class StudentController {
 	private Socket socket;
 	private StudentDAO studentDAO;
 	
-	
 	public void start() throws Exception {
 		
 		ss = new ServerSocket(8282);
@@ -41,29 +40,30 @@ public class StudentController {
 		ow = new OutputStreamWriter(os);
 		bw = new BufferedWriter(ow);
 		boolean check=true;
+		
 		while(check) {
-			 String select = br.readLine();//선택번호?data
-			 String [] s = select.split(":");
+			String select = br.readLine();//선택번호?data
+			String [] s = select.split(":");
 			 
-			 switch(s[0]) {
-			 case "1":
+			switch(s[0]) {
+			case "1":
 				 //1:
 				 select = studentDAO.makeList(ar);	 
-				 break;
-			 
-			 case "2":
+				break;
+			case "2":
 				 //2:iu
-				 //select= studentDAO.findbyname(ar, s[1]);
-				 break;
-			 case "3":
+				 select= studentDAO.findByName(ar);
+				break;
+			case "3":
 				 //3:iu-4-50-75-81
 				 //s[1]
 				 //select = studentDAO.addStudent(ar, s[1]);
-				 break;
-			 
-
-				 default:
-					 check=false;
+				break;
+			case "4":
+				
+				break;
+			default:
+				check=false;
 			 }
 			 
 			 if(check) {
