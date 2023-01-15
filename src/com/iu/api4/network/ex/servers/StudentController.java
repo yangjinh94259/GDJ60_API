@@ -47,23 +47,23 @@ public class StudentController {
 			 
 			 switch(s[0]) {
 			 case "1":
-				 select = studentDAO.makeList(ar);
+				 //1:
+				 select = studentDAO.makeList(ar);	 
 				 break;
-				 
+			 
 			 case "2":
-				 //select = studentDAO.findbyname(ar, s[1]);
+				 //2:iu
+				 //select= studentDAO.findbyname(ar, s[1]);
 				 break;
-				 
 			 case "3":
-				//select = studentDAO.addStudent(ar, s[1]);
+				 //3:iu-4-50-75-81
+				 //s[1]
+				 //select = studentDAO.addStudent(ar, s[1]);
 				 break;
-			
-			 case "4":
-				//select = studentDAO.removeStudent(ar, s[1]);
-				break;
-				 
-			default:
-				 check=false;
+			 
+
+				 default:
+					 check=false;
 			 }
 			 
 			 if(check) {

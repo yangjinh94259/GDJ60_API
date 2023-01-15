@@ -52,6 +52,4 @@ public class StudentDTO {
 		this.avg = avg;
 	}
 	
-	
-
 }
